@@ -1,32 +1,40 @@
 module.exports = {
   siteMetadata: {
-    title: 'Full-Stack Bootcamp!',
-    author: 'Brad Bodine'
+    title: "Full-Stack Bootcamp!",
+    author: "Brad Bodine",
   },
   plugins: [
-    'gatsby-plugin-sass',
+    'gatsby-plugin-react-helmet',
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-contentful",
       options: {
-        name: 'src',
-        path: `${__dirname}/src/`
-      }
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
     },
-    'gatsby-plugin-sharp',
+    "gatsby-plugin-sass",
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "src",
+        path: `${__dirname}/src/`,
+      },
+    },
+    "gatsby-plugin-sharp",
+    {
+      resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
-          'gatsby-remark-relative-images',
+          "gatsby-remark-relative-images",
           {
-            resolve: 'gatsby-remark-images',
+            resolve: "gatsby-remark-images",
             options: {
               maxWidth: 750,
-              linkImagesToOriginal: false
-            }
-          }
-        ]
-      }
-    }
-  ]
+              linkImagesToOriginal: false,
+            },
+          },
+        ],
+      },
+    },
+  ],
 }
